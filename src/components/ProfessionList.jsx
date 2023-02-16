@@ -5,6 +5,7 @@ import ProfessionCard from "./ProfessionCard";
 const ProfessionList = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
@@ -19,32 +20,39 @@ const ProfessionList = () => {
     setSelectedFilters((prevFilters) => [...prevFilters, filter]);
   };
 
+  useEffect(() => {
+    const filtered = dataApi.filter((job) => {
+      const roleMatch = selectedFilters.includes(job.role);
+      const levelMatch = selectedFilters.includes(job.level);
+      const languageMatch = selectedFilters.some((language) =>
+        job.languages.includes(language)
+      );
+      const toolsMatch = selectedFilters.some((tool) =>
+        job.tools.includes(tool)
+      );
+
+      if (roleMatch && levelMatch && languageMatch && toolsMatch) {
+        return roleMatch && levelMatch && languageMatch && toolsMatch;
+      } else if (roleMatch && levelMatch && languageMatch && !toolsMatch) {
+        return roleMatch && levelMatch && languageMatch;
+      } else if (roleMatch && levelMatch && !languageMatch && !toolsMatch) {
+        return roleMatch && levelMatch;
+      } else if (roleMatch && !levelMatch && !languageMatch && !toolsMatch) {
+        return roleMatch;
+      }
+      return false;
+
+      // console.log("role", roleMatch);
+      // console.log("level", levelMatch);
+      // console.log("languange", languageMatch);
+      // console.log("tools", toolsMatch);
+
+      // return roleMatch || levelMatch || languageMatch || toolsMatch;
+    });
+    setFilteredData(filtered);
+  }, [selectedFilters]);
+
   console.log(selectedFilters);
-
-  const filteredData = dataApi.filter((job) => {
-    const roleMatch = selectedFilters.includes(job.role);
-    const levelMatch = selectedFilters.includes(job.level);
-    const languageMatch = selectedFilters.some((language) =>
-      job.languages.includes(language)
-    );
-    const toolsMatch = selectedFilters.some((tool) => job.tools.includes(tool));
-
-    // if (roleMatch && levelMatch && languageMatch && toolsMatch) {
-    //   return roleMatch && levelMatch && languageMatch && toolsMatch;
-    // } else if (roleMatch && levelMatch && languageMatch && !toolsMatch) {
-    //   return roleMatch && levelMatch && languageMatch;
-    // } else if (roleMatch && levelMatch && !languageMatch && !toolsMatch) {
-    //   return roleMatch && levelMatch;
-    // } else if (roleMatch && !levelMatch && !languageMatch && !toolsMatch) {
-    //   return roleMatch;
-    // }
-    // return false;
-
-    return roleMatch || levelMatch || languageMatch || toolsMatch;
-  });
-
-  console.log(filteredData);
-
   return (
     <div className="bg-cyan-50 min-w-full min-h-screen w-full">
       <div className="relative bg-teal-600 overflow-hidden z-0">
