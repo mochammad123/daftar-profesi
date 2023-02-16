@@ -4,29 +4,33 @@
 
 The designs were created to the following widths:
 
-- Mobile: 375px
-- Desktop: 1440px
+- Mobile: 640px
+- Desktop: 1024px
 
 ## Colors
+- text-teal-50	color: rgb(240 253 250);
+- text-teal-100	color: rgb(204 251 241);
+- text-teal-500	color: rgb(20 184 166);
+- text-teal-600	color: rgb(13 148 136);
 
 ### Primary
 
-- Desaturated Dark Cyan: hsl(180, 29%, 50%)
-
 ### Neutral
-
-- Light Grayish Cyan (Background): hsl(180, 52%, 96%)
-- Light Grayish Cyan (Filter Tablets): hsl(180, 31%, 95%)
-- Dark Grayish Cyan: hsl(180, 8%, 52%)
-- Very Dark Grayish Cyan: hsl(180, 14%, 20%)
+- text-teal-50	color: rgb(240 253 250);
+- text-teal-100	color: rgb(204 251 241);
+- text-teal-500	color: rgb(20 184 166);
+- text-teal-600	color: rgb(13 148 136);
 
 ## Typography
 
 ### Body Copy
 
-- Font size: 15px
+- text-sm	font-size: 0.875rem; /* 14px */
+- text-base	font-size: 1rem; /* 16px */
+- text-lg	font-size: 1.125rem; /* 18px */
+- text-xl	font-size: 1.25rem; /* 20px */
 
 ### Headings
 
-- Family: [Spartan](https://fonts.google.com/specimen/Spartan)
-- Weights: 500, 700
+- Family: [League Spartan](https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap)
+- Weights: 100, 200, 300, 400, 500, 600, 700, 800, 900

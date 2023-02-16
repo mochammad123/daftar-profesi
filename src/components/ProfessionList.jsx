@@ -19,6 +19,8 @@ const ProfessionList = () => {
     setSelectedFilters((prevFilters) => [...prevFilters, filter]);
   };
 
+  console.log(dataApi);
+
   const filteredData = dataApi.filter((job) => {
     const roleMatch = selectedFilters.includes(job.role);
     const levelMatch = selectedFilters.includes(job.level);
@@ -26,21 +28,25 @@ const ProfessionList = () => {
       job.languages.includes(language)
     );
     const toolsMatch = selectedFilters.some((tool) => job.tools.includes(tool));
-    console.log(roleMatch);
 
-    // if (roleMatch === true) {
-    //   return roleMatch;
+    // if (roleMatch && levelMatch && languageMatch && !toolsMatch) {
+    //   return roleMatch && levelMatch && languageMatch;
+    // } else if (roleMatch && levelMatch && languageMatch && toolsMatch) {
+    //   return roleMatch && levelMatch && languageMatch && toolsMatch;
     // }
-    if (
-      roleMatch === true &&
-      levelMatch === true &&
-      languageMatch === true &&
-      toolsMatch === true
-    ) {
-      return roleMatch && levelMatch && languageMatch && toolsMatch;
-    }
 
+    // } else if (
+    //   roleMatch &&
+    //   levelMatch &&
+    //   languageMatch &&
+    //   toolsMatch === true
+    // ) {
     // return roleMatch && levelMatch && languageMatch && toolsMatch;
+    // }
+
+    console.log(toolsMatch);
+
+    return roleMatch || levelMatch || languageMatch || toolsMatch;
   });
 
   console.log(filteredData);
