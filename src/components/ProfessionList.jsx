@@ -37,7 +37,7 @@ const ProfessionList = () => {
         return roleMatch && levelMatch && languageMatch;
       } else if (roleMatch && levelMatch && !languageMatch && !toolsMatch) {
         return roleMatch && levelMatch;
-      } else if (!roleMatch && !levelMatch && languageMatch && !toolsMatch) {
+      } else if (roleMatch && !levelMatch && !languageMatch && !toolsMatch) {
         return roleMatch;
       }
       return false;
