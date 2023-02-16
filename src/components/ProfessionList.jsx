@@ -37,15 +37,10 @@ const ProfessionList = () => {
         return roleMatch && levelMatch && languageMatch;
       } else if (roleMatch && levelMatch && !languageMatch && !toolsMatch) {
         return roleMatch && levelMatch;
-      } else if (roleMatch && !levelMatch && !languageMatch && !toolsMatch) {
+      } else if (!roleMatch && !levelMatch && languageMatch && !toolsMatch) {
         return roleMatch;
       }
       return false;
-
-      // console.log("role", roleMatch);
-      // console.log("level", levelMatch);
-      // console.log("languange", languageMatch);
-      // console.log("tools", toolsMatch);
 
       // return roleMatch || levelMatch || languageMatch || toolsMatch;
     });
@@ -111,16 +106,16 @@ const ProfessionList = () => {
                     );
                   })}
                 </div>
-                <div className="flex justify-end text-teal-700 w-1/12">
-                  <p
-                    className="cursor-pointer hover:underline"
-                    onClick={() => {
-                      setSelectedFilters([]);
-                    }}
-                  >
-                    Clear
-                  </p>
-                </div>
+              </div>
+              <div className="flex justify-end text-teal-700 w-1/12">
+                <p
+                  className="cursor-pointer hover:underline"
+                  onClick={() => {
+                    setSelectedFilters([]);
+                  }}
+                >
+                  Clear
+                </p>
               </div>
             </div>
           </div>
