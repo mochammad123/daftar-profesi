@@ -19,7 +19,7 @@ const ProfessionList = () => {
     setSelectedFilters((prevFilters) => [...prevFilters, filter]);
   };
 
-  console.log(dataApi);
+  console.log(selectedFilters);
 
   const filteredData = dataApi.filter((job) => {
     const roleMatch = selectedFilters.includes(job.role);
@@ -67,56 +67,60 @@ const ProfessionList = () => {
         )}
       </div>
       <div className="container max-w-screen-lg mx-auto py-5 px-5">
-        <div className="relative rounded-lg bg-white shadow-lg w-full gap-4 px-5 -mt-12 z-50">
-          <div className="flex flex-row py-5">
-            <div className="flex justify-start w-11/12 gap-2">
-              {selectedFilters.map((filter, index) => {
-                return (
-                  <div className="flex flex-row" key={index}>
-                    <div className="rounded-md shadow-sm">
-                      <p className="bg-teal-50 text-teal-700 rounded-l px-2">
-                        {filter}
-                      </p>
-                    </div>
-                    <button
-                      className="bg-teal-600 text-white rounded-r hover:bg-gray-900"
-                      onClick={() => {
-                        const newFilters = [...selectedFilters];
-                        newFilters.splice(index, 1);
-                        setSelectedFilters(newFilters);
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
+        {!selectedFilters || selectedFilters.length === 0 ? (
+          ""
+        ) : (
+          <div className="relative rounded-lg bg-white shadow-lg w-full gap-4 px-5 -mt-12 z-50">
+            <div className="flex flex-row py-5">
+              <div className="flex justify-start w-11/12 gap-2">
+                {selectedFilters.map((filter, index) => {
+                  return (
+                    <div className="flex flex-row" key={index}>
+                      <div className="rounded-md shadow-sm">
+                        <p className="bg-teal-50 text-teal-700 rounded-l px-2">
+                          {filter}
+                        </p>
+                      </div>
+                      <button
+                        className="bg-teal-600 text-white rounded-r hover:bg-gray-900"
+                        onClick={() => {
+                          const newFilters = [...selectedFilters];
+                          newFilters.splice(index, 1);
+                          setSelectedFilters(newFilters);
+                        }}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="flex justify-end text-teal-700 w-1/12">
-              <p
-                className="cursor-pointer hover:underline"
-                onClick={() => {
-                  setSelectedFilters([]);
-                }}
-              >
-                Clear
-              </p>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-6 h-6"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="flex justify-end text-teal-700 w-1/12">
+                <p
+                  className="cursor-pointer hover:underline"
+                  onClick={() => {
+                    setSelectedFilters([]);
+                  }}
+                >
+                  Clear
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {!filteredData || filteredData.length === 0 ? (
           <div className="flex flex-col justify-center lg:gap-4 gap-16 mt-20 mb-10">
