@@ -57,6 +57,7 @@ const ProfessionCard = ({ item, handleButtonClick }) => {
               <p className="">{location}</p>
             </div>
           </div>
+          <hr />
           <div className="lg:flex lg:flex-row lg:justify-end lg:w-6/12 w-full lg:m-auto grid grid-cols-3 grid-flow-row gap-4 pl-6 mb-4">
             <div className="flex justify-start lg:gap-4 gap-2">
               {role ? (
